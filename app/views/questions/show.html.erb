@@ -5,5 +5,23 @@
   <span class="content"><%= markdown(@question.content) %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(@question.created_at) %> ago.
-  </span>  
+  </span>
+  
+  <h2>Answers (<%= @question.answers.count %>)</h2>
+  <% @question.answers.each do |answer| %>
+    <div class="panel panel-default">
+      <header class="panel-heading">
+      	<%= link_to gravatar_for(answer.user, size: 20), answer.user %>
+      	<span class="user"><%= link_to answer.user.email, answer.user %></span>
+      </header>
+      <div class="panel-body"><%= answer.content %></div>
+    </div>
+  <% end %>
+
+  <% if logged_in? %>
+    <%= form_for [@question, @question.answers.build] do |f| %>
+      <%= f.text_area :content, class: "form-control", placeholder: "New answer" %>
+      <%= f.submit "Answer", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
 </article>

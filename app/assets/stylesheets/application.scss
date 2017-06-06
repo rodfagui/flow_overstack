@@ -84,7 +84,7 @@ p {
 /* footer */
 footer {
   margin-top: 45px;
-  padding-top: 5px;
+  padding-top: 10px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
 }
@@ -141,7 +141,7 @@ aside {
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   @include box_sizing;
 }
 
@@ -171,8 +171,51 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 0;
+  }
+  .mini-counts {
+    font-size: 17px;
+    font-weight: 300;
+    color: #6a737c;
+    margin-bottom: 2px;
+    display: inline-flex;
+  }
+  .list-group {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0px;
+    .list-group-item {
+      display: inline-flex !important;
+      width: 100%;
+      height: auto;
+      border-radius: 0px;
+      border-bottom: 0px none;
+      border-left: 0px none;
+      border-right: 0px none;
+      .metrics{
+        width: 13%;
+        height: 50px;
+        display: inline-flex;
+        .answers{
+          display: block;
+          height: 38px;
+          min-width: 38px;
+          margin: 0 3px 0 0;
+          font-size: 11px;
+          color: #848d95;
+          padding: 5px 5px 6px 10px;
+          text-align: center;
+        }
+        .summary {
+          width: 82%;
+          float: left;
+          padding: 0;
+          display: block;
+          padding-left: 20px;
+        }  
+      }    
+    }    
   }
   .questioner {
     color: $gray-light;
@@ -200,11 +243,6 @@ input {
         text-decoration: none;
       }
     }
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
   }
 }
 
