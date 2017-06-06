@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$orange-red:  #ff4500;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -14,7 +15,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
 section {
@@ -81,7 +82,6 @@ p {
 }
 
 /* footer */
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -161,5 +161,88 @@ input {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+/* questions */
+
+.questions {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .questioner {
+    color: $gray-light;
+    display: block;
+    a {
+      color: $gray-light;
+      &:hover {
+        color: $gray-light;
+        text-decoration: none;
+      }
+    }
+  }
+  .title {
+    text-align: left;
+    font-size: 1.3em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: bold;
+    a {
+      color: $orange-red;
+      &:hover {
+        color: $gray-light;
+        text-decoration: none;
+      }
+    }
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+.questions_view {
+  .title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  .author {
+    color: $gray-light;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .content {
+    display: block;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase; 
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
   }
 }

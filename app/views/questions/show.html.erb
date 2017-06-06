@@ -1,0 +1,9 @@
+<% provide(:title, "Question #{@question.id}") %>
+<article class="questions_view">
+  <h1 class="title"><%= @question.title %></h1>
+  <span class="author">By: <%= @question.user.name %></span>
+  <span class="content"><%= markdown(@question.content) %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@question.created_at) %> ago.
+  </span>  
+</article>
