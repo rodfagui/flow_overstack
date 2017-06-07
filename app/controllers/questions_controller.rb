@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-	before_action :logged_in_user, only: [:new, :create]
+	before_action :logged_in_user, only: [:new, :create, :vote]
   
 	def new
 		@question = Question.new
@@ -18,6 +18,17 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
   end
+
+  def vote 
+    @question = Question.find(params[:id])
+    @question.liked_by current_user
+    if @question.vote_registered?
+      redirect_to :back
+    else
+      @question.unliked_by current_user
+      redirect_to :back
+    end
+  end 
 
   private
     def question_params

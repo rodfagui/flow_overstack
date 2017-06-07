@@ -34,6 +34,8 @@ gem 'will_paginate', '3.1.5'
 
 gem 'bootstrap-will_paginate', '1.0.0'
 
+gem 'acts_as_votable', '0.10.0'
+
 gem 'annotate', '2.7.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
