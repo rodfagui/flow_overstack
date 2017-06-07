@@ -164,6 +164,9 @@ input {
   }
 }
 
+.new-question {
+  margin-bottom: 10px;
+}
 /* questions */
 
 .questions {
@@ -275,6 +278,10 @@ input {
     color: black;
     font-weight: bold;
     text-transform: uppercase; 
+  }
+
+  .question_answers {
+    border-top: 1px solid $gray-medium-light;
   }
 }
 

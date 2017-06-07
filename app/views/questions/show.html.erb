@@ -1,27 +1,69 @@
 <% provide(:title, "Question #{@question.id}") %>
-<article class="questions_view">
-  <h1 class="title"><%= @question.title %></h1>
-  <span class="author">By: <%= @question.user.name %></span>
-  <span class="content"><%= markdown(@question.content) %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(@question.created_at) %> ago.
-  </span>
-  
-  <h2>Answers (<%= @question.answers.count %>)</h2>
-  <% @question.answers.each do |answer| %>
-    <div class="panel panel-default">
-      <header class="panel-heading">
-      	<%= link_to gravatar_for(answer.user, size: 20), answer.user %>
-      	<span class="user"><%= link_to answer.user.email, answer.user %></span>
-      </header>
-      <div class="panel-body"><%= answer.content %></div>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-sm-10 col-lg-offset-1">
+    <article class="questions_view">
+      <h1 class="title"><%= @question.title %></h1>
+      <span class="author">By: <%= @question.user.name %></span>
+      <span class="content"><%= markdown(@question.content) %></span>
+      <span class="timestamp">
+        Posted <%= time_ago_in_words(@question.created_at) %> ago.
+      </span>
 
-  <% if logged_in? %>
-    <%= form_for [@question, @question.answers.build] do |f| %>
-      <%= f.text_area :content, class: "form-control", placeholder: "New answer" %>
-      <%= f.submit "Answer", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-</article>
+      <div>
+        <h2>Question comments (<%= @question.comments.count %>)</h2>
+        <% @question.comments.each do |comment| %>
+          <div class="panel panel-default">
+            <header class="panel-heading">
+              <%= link_to gravatar_for(comment.user, size: 20), comment.user %>
+              <span class="user"><%= link_to comment.user.email, comment.user %></span>
+            </header>
+            <div class="panel-body"><%= markdown(comment.content) %></div>
+          </div>
+        <% end %>
+        <% if logged_in? %>
+          <%= form_for [@question, Comment.new] do |f| %>
+            <%= f.text_area :content, class: "form-control", placeholder: "New comment" %>
+            <%= f.submit "Comment", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="question_answers">
+        <h2>Answers (<%= @question.answers.count %>)</h2>
+        <% @question.answers.each do |answer| %>
+          <div class="panel panel-default">
+            <header class="panel-heading">
+              <%= link_to gravatar_for(answer.user, size: 20), answer.user %>
+              <span class="user"><%= link_to answer.user.email, answer.user %></span>
+            </header>
+            <div class="panel-body">
+              <%= markdown(answer.content) %>
+              <h3>Answer comments (<%= answer.comments.count %>)</h3>
+              <% answer.comments.each do |comment| %>
+                <div class="panel panel-default">
+                  <header class="panel-heading">
+                    <%= link_to gravatar_for(comment.user, size: 20), comment.user %>
+                    <span class="user"><%= link_to comment.user.email, comment.user %></span>
+                  </header>
+                  <div class="panel-body"><%= markdown(comment.content) %></div>
+                </div>
+              <% end %>
+              <% if logged_in? %>
+                <%= form_for [answer, Comment.new] do |f| %>
+                  <%= f.text_area :content, class: "form-control", placeholder: "New comment" %>
+                  <%= f.submit "Comment", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>    
+            </div>
+          </div>
+        <% end %>
+        <% if logged_in? %>
+          <%= form_for [@question, @question.answers.build] do |f| %>
+            <%= f.text_area :content, class: "form-control", placeholder: "New answer" %>
+            <%= f.submit "Answer", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </article>
+  </div>
+</div>
