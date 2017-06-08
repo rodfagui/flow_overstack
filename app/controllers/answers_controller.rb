@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-	before_action :logged_in_user, only: [:create]
+	before_action :logged_in_user, only: [:create, :vote]
 
 	def create
 		@question = Question.find(params[:question_id])

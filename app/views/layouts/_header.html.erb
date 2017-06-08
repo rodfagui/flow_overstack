@@ -9,9 +9,9 @@
       <%= link_to "Flow Overstack", root_path, id: "logo" %>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <form class="nav navbar-form navbar-right" role="search">
-        <input type="text" class="form-control" placeholder="Search">
-      </form>
+      <%= search_form_for(@search, url: root_path, html: { class: 'navbar-form navbar-right' }) do |f| %>
+        <div class="form-group"> <%= f.search_field :title_or_content_cont, class: 'form-control', placeholder: 'Search...' %></div>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li class="dropdown">

@@ -30,6 +30,8 @@ gem 'redcarpet', '3.4.0'
 
 gem 'faker', '1.7.3'
 
+gem 'ransack', '1.8.2'
+
 gem 'will_paginate', '3.1.5'
 
 gem 'bootstrap-will_paginate', '1.0.0'

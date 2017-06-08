@@ -1,7 +1,7 @@
 <% provide(:title, "Question #{@question.id}") %>
 <div class="row">
-  <div class="col-sm-10 col-sm-offset-1 questions_view">
-    <table>
+  <div class="col-sm-10 col-sm-offset-1">
+    <table class="table borderless">
       <tbody>
         <tr>
           <td>
@@ -33,7 +33,7 @@
               <h2><%= @question.comments.count %> <span class="glyphicon glyphicon-comment"></span></h2>
               <ul class="list-group">
                 <% @question.comments.each do |comment| %>
-                  <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %></span>
+                  <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %> ago</span>
                   </li>
                 <% end %>  
               </ul>
@@ -54,7 +54,7 @@
     </div>
     
     <% @question.answers.each do |answer| %>
-      <table class="answer">
+      <table class="table borderless">
         <tbody>
           <tr>
             <td>
@@ -84,7 +84,7 @@
                 <h3><%= answer.comments.count %> <span class="glyphicon glyphicon-comment"></span></h3>
                 <ul class="list-group">
                   <% answer.comments.each do |comment| %>
-                    <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %></span>
+                    <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %> ago</span>
                     </li>
                   <% end %>  
                 </ul>
@@ -100,10 +100,10 @@
         </tbody>
       </table>
     <% end %>
-
+    
     <div class="answer-form">
-      <h2>Your answer</h2>
       <% if logged_in? %>
+        <h2>Your answer</h2>
         <%= form_for [@question, @question.answers.build] do |f| %>
           <%= f.text_area :content, class: "form-control", placeholder: "New answer" %>
           <%= f.submit "Answer", class: "btn btn-default" %>

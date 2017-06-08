@@ -10,7 +10,7 @@
   </aside>
   <div class="col-md-8">
     <% if @user.questions.any? %>
-      <h3>Questions (<%= @user.questions.count %>)</h3>
+      <h2 class="user-view">Questions (<%= @user.questions.count %>)</h2>
       <ol class="questions">
         <%= render @questions %>
       </ol>
