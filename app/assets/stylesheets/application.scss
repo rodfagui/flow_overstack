@@ -59,9 +59,18 @@ h2 {
   color: $gray-light;
 }
 
+h3 {
+  font-size: 1.0em;
+  letter-spacing: 0px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: normal;
+  color: $gray-light;
+}
+
 p {
   font-size: 1.1em;
-  line-height: 1.7em;
+  line-height: 1.4em;
 }
 
 /* header */
@@ -251,26 +260,28 @@ input {
 
 .questions_view {
   .title {
-    text-align: center;
-    text-transform: uppercase;
+    text-align: left;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
   .author {
     color: $gray-light;
     display: block;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 10px;
   }
   .content {
     display: block;
-    text-align: justify;
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 0px !important;
   }
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-bottom: 40px;
+    font-size: 13px;
+    margin-bottom: 10px;
   }
 
   h2 {
@@ -294,21 +305,32 @@ aside {
 
 /* votes */
 
+table {
+  tbody {
+    tr {
+      td {
+        vertical-align: top;
+      }
+    }
+  }
+}
+
 .product-upvote {
   position: relative;
   float: left;
   text-align: center;
   text-decoration: none;
+  margin-top: 10px;
   margin-right: 20px;
   padding: 5px 5px;
   width: 35px;
-
+  
   .upvote-arrow {
-    border-bottom: 9px solid #534540;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 9px solid transparent;
-    left: 10px;
+    border-bottom: 18px solid #534540;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 18px solid transparent;
+    left: 6px;
     position: absolute;
     top: 0px;
   }
@@ -316,10 +338,10 @@ aside {
   .upvote-count {
     display: block;
     color: #303030;
-    font-size: 14px;
+    font-size: 25px;
     font-weight: bold;
     line-height: 1;
-    margin-top: 18px;
+    margin-top: 38px;
   }
 
   &:hover .upvote-arrow { border-bottom-color: #F04500; }
@@ -327,5 +349,73 @@ aside {
   &.upvote-active {
     .upvote-arrow { border-bottom-color: #F04500; }
     .upvote-count { color: #F04500; }
+  }
+}
+
+/* comments */
+
+.comments {
+  margin-bottom: 40px;
+  h3 {
+    
+  }
+  .list-group {
+    .list-group-item {
+      border-radius: 0px;
+      border-bottom: 0px none;
+      border-left: 0px none;
+      border-right: 0px none;
+      &:last-child {
+        border-bottom: 1px solid #ddd;
+      }
+      p {
+        display: inline;
+        font-size: 14px;   
+      }
+      .commenter {
+        font-size: 13px;
+        color: $gray-light;
+        a {
+          color: $gray-light;
+          &:hover {
+            color: $gray-light;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  form {
+    input[type="submit"] {
+      background-color: gainsboro;
+      &:hover {
+        background-color: darken(gainsboro, 30%);
+      }
+    }
+  }
+}
+
+/*answer*/
+
+.answers-header {
+  border-bottom: 1px solid #ddd;
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.answer {
+  border-bottom: 1px solid #ddd; 
+}
+
+.answer-form {
+  margin-top: 40px;
+  form {
+    input[type="submit"] {
+      background-color: gainsboro;
+      &:hover {
+        background-color: darken(gainsboro, 30%);
+      }
+    }
   }
 }
