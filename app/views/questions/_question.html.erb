@@ -2,7 +2,13 @@
   <div class="list-group">
   	<div class="list-group-item">
   	  <div class="metrics">
-  	    <div class="answers">
+  	    <div class="votes">
+          <div class="mini-counts">
+            <span><%= question.get_likes.size %></span>
+          </div>
+          <div>votes</div>
+        </div>
+        <div class="answers">
   	      <div class="mini-counts">
   	        <span><%= question.answers.count %></span>
   	      </div>

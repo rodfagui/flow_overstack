@@ -48,46 +48,59 @@
         </tr>  
       </tbody>
     </table>
+    
     <div class="answers-header">
       <h2>Answers (<%= @question.answers.count %>)</h2>  
     </div>
+    
     <% @question.answers.each do |answer| %>
-      <div class="answer">
-        <table>
-          <tbody>
-            <tr>
-              <td></td>
-              <td>
-                <p class="content"><%= markdown(answer.content) %></p>
-                <span class="timestamp">
-                  Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>.
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <div class="comments">
-                  <h3><%= answer.comments.count %> <span class="glyphicon glyphicon-comment"></span></h3>
-                  <ul class="list-group">
-                    <% answer.comments.each do |comment| %>
-                      <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %></span>
-                      </li>
-                    <% end %>  
-                  </ul>
-                  <% if logged_in? %>
-                    <%= form_for [answer, Comment.new] do |f| %>
-                      <%= f.text_area :content, class: "form-control", placeholder: "New comment" %>
-                      <%= f.submit "Comment", class: "btn btn-default" %>
-                    <% end %>
+      <table class="answer">
+        <tbody>
+          <tr>
+            <td>
+              <% if logged_in? && current_user.liked?(answer) %>
+                <%= link_to avote_answer_path(answer), method: :put, class: "product-upvote upvote-active" do %>
+                  <span class="upvote-arrow"></span>
+                  <span class="upvote-count"><%= answer.get_likes.size %></span>
+                <% end %>
+              <% else %>
+                <%= link_to avote_answer_path(answer), method: :put, class: "product-upvote" do %>
+                  <span class="upvote-arrow"></span>
+                  <span class="upvote-count"><%= answer.get_likes.size %></span>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <p class="content"><%= markdown(answer.content) %></p>
+              <span class="timestamp">
+                Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>.
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <div class="comments">
+                <h3><%= answer.comments.count %> <span class="glyphicon glyphicon-comment"></span></h3>
+                <ul class="list-group">
+                  <% answer.comments.each do |comment| %>
+                    <li class="list-group-item"><span><%= markdown(comment.content) %></span> - <span class="commenter"><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %></span>
+                    </li>
+                  <% end %>  
+                </ul>
+                <% if logged_in? %>
+                  <%= form_for [answer, Comment.new] do |f| %>
+                    <%= f.text_area :content, class: "form-control", placeholder: "New comment" %>
+                    <%= f.submit "Comment", class: "btn btn-default" %>
                   <% end %>
-                </div>   
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
+
     <div class="answer-form">
       <h2>Your answer</h2>
       <% if logged_in? %>
