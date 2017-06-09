@@ -1,17 +1,17 @@
 <% provide(:title, "Question #{@question.id}") %>
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">
-    <table class="table borderless">
+    <table class="table questions-view">
       <tbody>
         <tr>
           <td>
             <% if logged_in? && current_user.liked?(@question) %>
-              <%= link_to qvote_question_path(@question), method: :put, class: "product-upvote upvote-active" do %>
+              <%= link_to qvote_question_path(@question), method: :put, class: "element-upvote upvote-active" do %>
                 <span class="upvote-arrow"></span>
                 <span class="upvote-count"><%= @question.get_likes.size %></span>
               <% end %>
             <% else %>
-              <%= link_to qvote_question_path(@question), method: :put, class: "product-upvote" do %>
+              <%= link_to qvote_question_path(@question), method: :put, class: "element-upvote" do %>
                 <span class="upvote-arrow"></span>
                 <span class="upvote-count"><%= @question.get_likes.size %></span>
               <% end %>
@@ -54,17 +54,17 @@
     </div>
     
     <% @question.answers.each do |answer| %>
-      <table class="table borderless">
+      <table class="table answers-view">
         <tbody>
           <tr>
             <td>
               <% if logged_in? && current_user.liked?(answer) %>
-                <%= link_to avote_answer_path(answer), method: :put, class: "product-upvote upvote-active" do %>
+                <%= link_to avote_answer_path(answer), method: :put, class: "element-upvote upvote-active" do %>
                   <span class="upvote-arrow"></span>
                   <span class="upvote-count"><%= answer.get_likes.size %></span>
                 <% end %>
               <% else %>
-                <%= link_to avote_answer_path(answer), method: :put, class: "product-upvote" do %>
+                <%= link_to avote_answer_path(answer), method: :put, class: "element-upvote" do %>
                   <span class="upvote-arrow"></span>
                   <span class="upvote-count"><%= answer.get_likes.size %></span>
                 <% end %>
@@ -73,7 +73,7 @@
             <td>
               <p class="content"><%= markdown(answer.content) %></p>
               <span class="timestamp">
-                Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>.
+                Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>
               </span>
             </td>
           </tr>
@@ -100,7 +100,7 @@
         </tbody>
       </table>
     <% end %>
-    
+
     <div class="answer-form">
       <% if logged_in? %>
         <h2>Your answer</h2>
